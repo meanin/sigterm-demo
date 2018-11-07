@@ -8,7 +8,6 @@ namespace SigtermDemo.HostedServices
     public class ApplicationLifetimeHostedService : IHostedService
     {
         private readonly IApplicationLifetime _appLifetime;
-        public event EventHandler OnStoppingEventHandler;
 
         public ApplicationLifetimeHostedService(IApplicationLifetime appLifetime)
         {
@@ -17,8 +16,8 @@ namespace SigtermDemo.HostedServices
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _appLifetime.ApplicationStopping.Register(OnStopping);
             _appLifetime.ApplicationStarted.Register(OnStarted);
+            _appLifetime.ApplicationStopping.Register(OnStopping);
             _appLifetime.ApplicationStopped.Register(OnStopped);
 
             return Task.CompletedTask;
@@ -26,17 +25,17 @@ namespace SigtermDemo.HostedServices
 
         private void OnStarted()
         {
-            OnStoppingEventHandler?.Invoke(this, EventArgs.Empty);
+            return;
         }
 
         private void OnStopping()
         {
-            OnStoppingEventHandler?.Invoke(this, EventArgs.Empty);
+            return;
         }
 
         private void OnStopped()
         {
-            OnStoppingEventHandler?.Invoke(this, EventArgs.Empty);
+            return;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
