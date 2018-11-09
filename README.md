@@ -6,7 +6,7 @@ Purpose of this project is to test if it is possible to handle SIGTERM on asp.ne
 ```docker build -f SigtermDemo\Dockerfile -t "sigtermdemo:latest" .```
 
 # run interactively
-docker run -it sigtermdemo
+```docker run -it sigtermdemo```
 
 # test SIGTERM
 ```docker stop <containerid>```
